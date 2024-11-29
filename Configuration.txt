@@ -1,0 +1,35 @@
+enable secret nhc@123
+line console 0
+password root@123
+login
+exit
+service password-encryption
+
+interface vlan
+ip address 
+no sh
+exit
+default gateway
+
+username admin password p@ssw0rd
+ip domain-name cisco.com
+crypto key generate rsa
+line vty 0 4
+login local
+transport input ssh
+exit
+
+access-list 10 permit host 192.168.1.15
+line vty 0 4
+access-class 10 in
+transport input ssh
+exit
+
+
+enable
+conf t
+router ospf 1
+area 0 authentication message-digest 
+exit
+int g0/0/0
+ip ospf message-digest-key 1 md5 MD5pa55
